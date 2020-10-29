@@ -1,3 +1,7 @@
+package-lock.json
+resources/bc-agent-service-account-credentials.json
+.DS_Store
+
 # Logs
 logs
 *.log

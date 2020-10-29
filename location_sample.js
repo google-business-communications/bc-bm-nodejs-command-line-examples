@@ -83,6 +83,7 @@ function createLocation(brandName, agentName, placeId) {
   const locationObject = {
     placeId: placeId,
     agent: agentName,
+    defaultLocale: 'en', // Must match a conversational setting locale
     conversationalSettings: {
       en: {
         privacyPolicy: {url: 'http://www.company.com/privacy'},

@@ -3,15 +3,11 @@
   "version": "0.0.0",
   "scripts": {},
   "dependencies": {
-    "countries-and-timezones": "^2.0.5",
-    "googleapis": "^45.0.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0",
-    "uuid": "^3.3.3",
-    "businesscommunications": "^1.0.2"
+    "businesscommunications": "^1.0.2",
+    "googleapis": "^61.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.12.1",
     "eslint-config-google": "^0.14.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
