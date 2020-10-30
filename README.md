@@ -1,7 +1,7 @@
 # BUSINESS COMMUNICATIONS: Command-Line Sample
 
 This sample demonstrates how to use the [Business Communications Node.js client library](https://github.com/google-business-communications/nodejs-businesscommunications) for performing operations
-with the [Business Communications API](https://businesscommunications.googleapis.com).
+with the [Business Communications API](https://developers.google.com/business-communications/business-messages/reference/business-communications/rest).
 
 This application assumes that you're signed up with
 [Business Messages](https://developers.google.com/business-communications/business-messages/guides/set-up/register).
