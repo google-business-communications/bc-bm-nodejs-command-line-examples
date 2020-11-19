@@ -151,7 +151,34 @@ function createAgent(brandName) {
         {
           allowedEntryPoint: 'LOCATION',
         },
+        {
+          allowedEntryPoint: 'NON_LOCAL',
+        },
       ],
+      nonLocalConfig: { // Configuration options for launching on non-local entry points
+        // List of phone numbers for call deflection, values must be globally unique
+        // Generating a random phone number for demonstration purposes
+        // This should be replaced with a real brand phone number
+        callDeflectionPhoneNumbers: [
+          { number: randomPhoneNumber() },
+        ],
+        // Contact information for the agent that displays with the messaging button
+        contactOption: {
+          options: [
+            'WEB_CHAT', 'FAQS'
+          ],
+          url: 'https://www.example-url.com',
+        },
+        // Domains enabled for messaging within Search, values must be globally unique
+        // Generating a random URL for demonstration purposes
+        // This should be replaced with a real brand URL
+        enabledDomains: [getRandomUrl()],
+        // Agent's phone number. Overrides the `phone` field
+        // for conversations started from non-local entry points
+        phoneNumber: { number: '+12223335555' },
+        // Example is for launching in Canada and the USA
+        regionCodes: ['CA', 'US']
+      },
       primaryAgentInteraction: {
         interactionType: 'BOT',
         botRepresentative: {
@@ -385,4 +412,12 @@ function deleteAgent(agentName) {
       });
     });
   });
+}
+
+function randomPhoneNumber() {
+  return '+1' + Math.floor(1000000000 + Math.random() * 9000000000)
+}
+
+function getRandomUrl() {
+  return 'https://www.' + Math.random().toString(26).slice(-10) + '.com';
 }
