@@ -73,6 +73,68 @@ async function main() {
 
   await delay(3000);
 
+
+  printHeader('Updating Agent Survey Config');
+  updateAgentSurveyConfig(agent.name, {
+    templateQuestionIds: [
+      'GOOGLE_DEFINED_NPS',
+      'GOOGLE_DEFINED_CUSTOMER_EFFORT',
+    ],
+    customSurveys: {
+      en: {
+        customQuestions: [
+          {
+            name: 'custom_question_1',
+            questionType: 'PARTNER_CUSTOM_QUESTION',
+            questionContent: 'Does a custom question yield better survey results?',
+            responseOptions: [
+              {
+                content: '👍',
+                postbackData: 'yes',
+              },
+              {
+                content: '👎',
+                postbackData: 'no',
+              },
+            ],
+          },
+          {
+            name: 'custom_question_2',
+            questionType: 'PARTNER_CUSTOM_QUESTION',
+            questionContent: 'How would you rate this agent',
+            responseOptions: [
+              {
+                content: '⭐️',
+                postbackData: '1-star',
+              },
+              {
+                content: '⭐️⭐️',
+                postbackData: '2-star',
+              },
+              {
+                content: '⭐️⭐️⭐️',
+                postbackData: '3-star',
+              },
+              {
+                content: '⭐️⭐️⭐️⭐️',
+                postbackData: '4-star',
+              },
+              {
+                content: '⭐️⭐️⭐️⭐️⭐️',
+                postbackData: '5-star',
+              },
+            ],
+          },
+        ],
+      },
+    },
+  },
+
+  );
+
+  await delay(3000);
+
+
   printHeader('List Agents');
   listAgents(brandName);
 
@@ -211,6 +273,32 @@ function createAgent(brandName) {
           },
         },
       },
+      surveyConfig: {
+        templateQuestionIds: [
+          'GOOGLE_DEFINED_ASSOCIATE_SATISFACTION',
+        ],
+        customSurveys: {
+          en: {
+            customQuestions: [
+              {
+                name: 'custom_question_1',
+                questionType: 'PARTNER_CUSTOM_QUESTION',
+                questionContent: 'Did this agent do the best that it could?',
+                responseOptions: [
+                  {
+                    content: '👍',
+                    postbackData: 'yes',
+                  },
+                  {
+                    content: '👎',
+                    postbackData: 'no',
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      },
     },
   };
 
@@ -296,6 +384,31 @@ function updateAgentConversationalSettings(agentName, conversationalSettings) {
         agentObject,
         apiObject,
         'businessMessagesAgent.conversationalSettings.en',
+    );
+  });
+}
+
+/**
+  * Update the agent's survey config.
+  *
+  * @param {string} agentName The agent name for the agent being updated.
+  * @param {string} surveyConfig The new survey config.
+  */
+function updateAgentSurveyConfig(agentName, surveyConfig) {
+  const agentObject = {
+    businessMessagesAgent: {
+      surveyConfig: surveyConfig,
+    },
+  };
+
+  const apiConnector = apiHelper.init();
+  apiConnector.then((apiObject) => {
+    // Update Agent
+    updateAgent(
+        agentName,
+        agentObject,
+        apiObject,
+        'businessMessagesAgent.surveyConfig',
     );
   });
 }
